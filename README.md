@@ -7,7 +7,7 @@ Write a program that counts the number of occurances per character. The program 
 The order should be alphanumerical.
 
 ## Description
-An array is used to store the number of occurances per character from the strings passed in as arguments. An unsigned char is used as the array's indices. Using this array, the characters and their occurances are printed in alphanumerical order if a character has a frequency of 1 or more.
+An array is used to store the number of occurences per character from the strings passed in as arguments. An unsigned char is used as the array's indices. Using this array, the characters and their occurances are printed in alphanumerical order if a character has a frequency of 1 or more.
 
 ## Installation
 You can clone the project repository from GitHub using the following command: 
