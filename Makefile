@@ -1,17 +1,25 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Iinclude
 TARGET = my_ngram
-DEPS = my_ngram.h
-OBJ = my_ngram.o
+SRCDIR = src
+INCDIR = include
+OBJDIR = obj
+SRC = $(wildcard $(SRCDIR)/*.c)
+OBJ = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 
-%.o: %.c $(DEPS)
+# Create object directory if it doesn't exist
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-my_ngram : $(OBJ)
-	$(CC) -o $@ $< $(CFLAGS)
+$(TARGET): $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
+
+# Ensure the object directory exists
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
 
 clean:
-	rm -f *.o
+	rm -f $(OBJDIR)/*.o
 
 fclean: clean
 	rm -f $(TARGET)
